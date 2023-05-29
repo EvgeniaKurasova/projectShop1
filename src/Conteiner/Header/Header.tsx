@@ -12,7 +12,7 @@ type Props = {}
 const Header = (props: Props) => {
     const appBar = false
     return (
-        <AppBar position="static" className="app-bar" style={{backgroundColor: appBar ? "green" : "purple"}}>
+        <AppBar position="static" className="app-bar">
             <Container>
                 <Toolbar>
                     <IconButton
