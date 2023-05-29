@@ -6,10 +6,13 @@ import { Container } from '@mui/material'
 import Logo from 'components/Logo/Logo'
 import Menu from 'components/Menu/Menu'
 
+import './Header.css'
+
 type Props = {}
 const Header = (props: Props) => {
+    const appBar = false
     return (
-        <AppBar position="static">
+        <AppBar position="static" className="app-bar" style={{backgroundColor: appBar ? "green" : "purple"}}>
             <Container>
                 <Toolbar>
                     <IconButton
