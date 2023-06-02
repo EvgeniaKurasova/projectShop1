@@ -25,3 +25,12 @@
     width: 150px;
     height: auto;
 }
+.product-quantity{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.product-quantity input{
+    text-align: center; 
+}
