@@ -23,7 +23,7 @@
 }
 .product-img > img{
     width: 150px;
-    height: auto;
+    height: 180px;
 }
 .product-quantity{
     display: flex;
