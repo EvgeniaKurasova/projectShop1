@@ -19,33 +19,33 @@ type Props = {
 
 type State = {
     count: number
+    color: string
 }
 
-
-
 class ProductListItem extends React.Component<Props, State> {
-    constructor(props: Props){
-        super(props)
-        this.state = {
-            count: 1
-        }
-        this.onIncrementClick = this.onIncrementClick.bind(this)
-        this.onDicrementClick = this.onDicrementClick.bind(this)
+    state = {
+        count: 1,
+        color: 'green',
     }
 
-    onIncrementClick(){
+    onIncrementClick = () => {
         this.setState((prevState) => ({
-            count: prevState.count + 1
+            count: prevState.count + 1,
         }))
     }
-    onDicrementClick(){
+    onDicrementClick = () => {
         this.setState((prevState) => ({
-            count: prevState.count - 1
+            count: prevState.count - 1,
+        }))
+    }
+    changeColor = () => {
+        this.setState((prevState) => ({
+            color: prevState.color === 'green' ? 'red' : 'green',
         }))
     }
 
     render() {
-        const{title, description, type, capacity, price, image} = this.props
+        const { title, description, type, capacity, price, image } = this.props
 
         return (
             <Card className="product" variant="outlined">
@@ -54,22 +54,35 @@ class ProductListItem extends React.Component<Props, State> {
                         <img src={image} alt="" />
                     </div>
                     <h4 className="product-title">{title}</h4>
-                    <div className="product-description">
-                        {description}
+                    <div className="product-description">{description}</div>
+                    <div className="product-features">Type: {type}</div>
+                    <div className="product-features">Capacity: {capacity}</div>
+                    <div>
+                        Color:{' '}
+                        <span className={`${this.state.color}`}>
+                            {this.state.color}
+                        </span>
                     </div>
-                    <div className="product-features">
-                        Type: {type}
-                    </div>
-                    <div className="product-features">
-                        Capacity: {capacity}
-                    </div>
-                    <div className="product-price">
-                        Price: {price}$
-                    </div>
+                    <button onClick={() => this.changeColor()}>
+                        Change color
+                    </button>
+                    <div className="product-price">Price: {price}$</div>
                     <div className="product-quantity">
-                        <Button variant="outlined" onClick={this.onDicrementClick}>-</Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => this.onDicrementClick()}
+                            disabled={this.state.count <= 1}
+                        >
+                            -
+                        </Button>
                         <TextField value={this.state.count} size="small" />
-                        <Button variant="outlined" onClick={this.onIncrementClick}>+</Button>
+                        <Button
+                            variant="outlined"
+                            onClick={() => this.onIncrementClick()}
+                            disabled={this.state.count >= 10}
+                        >
+                            +
+                        </Button>
                     </div>
                     <CardActions className="btn-wrap">
                         <Button variant="outlined">Add to cart</Button>
