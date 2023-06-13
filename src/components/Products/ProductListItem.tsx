@@ -3,16 +3,17 @@ import './ProductListItem.css'
 import { useState } from 'react'
 
 type Props = {
+    id: number
     title: string
     description: string
     capacity: string
     type: string
     price: number
     image: string
-    addProductToCart: (count:number,price:number) => void
+    addProductToCart: (id: number, count: number) => void
 }
 
-const ProductListItem = ({title, description, type, capacity, price, image, addProductToCart} : Props) => {
+const ProductListItem = ({id, title, description, type, capacity, price, image, addProductToCart} : Props) => {
     const [count, setCount] = useState<number>(1)
     const onIncrementClick = () => {
         setCount((prevState) => prevState + 1)
@@ -37,7 +38,7 @@ const ProductListItem = ({title, description, type, capacity, price, image, addP
                     <Button variant='outlined' onClick={() => onIncrementClick()} disabled={count >= 10}>+</Button>
                 </div>
                 <CardActions className='btn-wrap'>
-                    <Button variant="outlined" onClick={() => addProductToCart(count, price)}>Add to cart</Button>
+                    <Button variant="outlined" onClick={() => addProductToCart(id, count)}>Add to cart</Button>
                 </CardActions>
             </CardContent>
         </Card>
